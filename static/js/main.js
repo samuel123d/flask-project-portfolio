@@ -134,3 +134,24 @@ document.addEventListener("keydown", (event) => {
     closeAboutCard();
   }
 });
+
+function setupImageLoading() {
+  const images = Array.from(document.querySelectorAll("img"));
+
+  images.forEach((img) => {
+    if (img.complete && img.naturalWidth !== 0) {
+      img.classList.add("is-loaded");
+      return;
+    }
+
+    img.addEventListener("load", () => {
+      img.classList.add("is-loaded");
+    });
+
+    img.addEventListener("error", () => {
+      img.classList.add("is-loaded");
+    });
+  });
+}
+
+setupImageLoading();

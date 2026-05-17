@@ -35,6 +35,22 @@ main {
 img {
   display: block;
   max-width: 100%;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 360ms ease, transform 360ms ease, filter 360ms ease;
+  will-change: opacity, transform;
+}
+
+img.is-loaded {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.project-card__media,
+.hero-slide,
+.detail-hero__media {
+  background: linear-gradient(135deg, #f5f2ec 0%, #ece8df 50%, #f5f2ec 100%);
 }
 
 a {
