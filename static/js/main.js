@@ -91,3 +91,46 @@ heroSlides.forEach((slide) => {
 });
 
 window.addEventListener("resize", clearFocusedSlide);
+
+const aboutCards = Array.from(document.querySelectorAll(".about-list article"));
+const aboutBackdrop = document.querySelector(".about-backdrop");
+
+function closeAboutCard() {
+  aboutCards.forEach((card) => {
+    card.classList.remove("is-expanded");
+    card.setAttribute("aria-expanded", "false");
+  });
+  aboutBackdrop?.classList.remove("is-visible");
+}
+
+function openAboutCard(card) {
+  closeAboutCard();
+  card.classList.add("is-expanded");
+  card.setAttribute("aria-expanded", "true");
+  aboutBackdrop?.classList.add("is-visible");
+}
+
+aboutCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    if (card.classList.contains("is-expanded")) {
+      closeAboutCard();
+      return;
+    }
+    openAboutCard(card);
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openAboutCard(card);
+    }
+  });
+});
+
+aboutBackdrop?.addEventListener("click", closeAboutCard);
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closeAboutCard();
+  }
+});

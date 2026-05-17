@@ -310,6 +310,7 @@ h3 {
 }
 
 .about-panel {
+  position: relative;
   display: grid;
   gap: 24px;
   border-top: 1px solid var(--line);
@@ -329,14 +330,16 @@ h3 {
 }
 
 .about-list article {
+  cursor: pointer;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.58);
   padding: 18px;
-  transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+  transition: border-color 180ms ease, box-shadow 240ms ease, transform 240ms ease, background 180ms ease;
 }
 
-.about-list article:hover {
+.about-list article:hover,
+.about-list article:focus-visible {
   border-color: rgba(23, 124, 114, 0.32);
   background: #ffffff;
   transform: translateY(-3px);
@@ -355,9 +358,50 @@ h3 {
 }
 
 .about-list p {
+  display: -webkit-box;
+  overflow: hidden;
   margin-bottom: 0;
   color: var(--muted);
   font-size: 0.95rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.about-list article.is-expanded {
+  position: fixed;
+  z-index: 60;
+  top: 50%;
+  left: 18px;
+  right: 18px;
+  max-height: min(430px, calc(100vh - 48px));
+  overflow: auto;
+  background: #ffffff;
+  box-shadow: 0 28px 70px rgba(31, 37, 40, 0.28);
+  transform: translateY(-50%) scale(1);
+}
+
+.about-list article.is-expanded:hover,
+.about-list article.is-expanded:focus-visible {
+  transform: translateY(-50%) scale(1);
+}
+
+.about-list article.is-expanded p {
+  display: block;
+  overflow: visible;
+}
+
+.about-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  display: none;
+  border: 0;
+  background: rgba(31, 37, 40, 0.42);
+  backdrop-filter: blur(4px);
+}
+
+.about-backdrop.is-visible {
+  display: block;
 }
 
 .section-heading {
@@ -866,14 +910,8 @@ h3 {
     padding-bottom: 96px;
   }
 
-  .about-panel {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    align-items: start;
-    padding: 34px 0;
-  }
-
   .about-list {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(180px, 1fr));
   }
 
   .project-grid {
@@ -903,6 +941,17 @@ h3 {
 
 /* Wider desktop card layout. */
 @media (min-width: 1040px) {
+  .about-panel {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+    align-items: start;
+    padding: 34px 0;
+  }
+
+  .about-list p {
+    display: block;
+    overflow: visible;
+  }
+
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
