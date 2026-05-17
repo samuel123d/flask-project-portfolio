@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found | Portfolio{% endblock %}
+{% block meta_description %}The requested portfolio page could not be found.{% endblock %}
+
+{% block content %}
+  <section class="error-page" aria-labelledby="error-title">
+    <p class="eyebrow">404</p>
+    <h1 id="error-title">This page is not in the gallery.</h1>
+    <p>The project or page you are looking for may have moved, been renamed, or never existed.</p>
+    <a class="button-link" href="{{ url_for('index') }}#projects">Back to projects</a>
+  </section>
+{% endblock %}

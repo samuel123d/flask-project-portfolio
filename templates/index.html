@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Projects | Portfolio{% endblock %}
+{% block meta_description %}A clean portfolio gallery featuring Web Development and Graphic Design projects with filters, search, and dedicated detail pages.{% endblock %}
+{% block og_title %}Projects | Portfolio{% endblock %}
+{% block og_description %}Browse selected Web Development and Graphic Design projects in a responsive Flask portfolio.{% endblock %}
+
+{% block content %}
+  <section class="intro" aria-labelledby="page-title">
+    <div class="intro__layout">
+      <div class="intro__content">
+        <p class="eyebrow">Project-focused portfolio</p>
+        <h1 id="page-title">Web Development and Graphic Design work in a clean project gallery.</h1>
+        <p class="intro__text">A simple Flask foundation for showcasing studies, real deliverables, and visual experiments with thumbnails, tags, and dedicated project pages.</p>
+      </div>
+
+      <aside class="hero-carousel" aria-label="Featured project carousel">
+        <div class="hero-carousel__track">
+          {% for project in projects[:4] %}
+            <a class="hero-slide" href="{{ url_for('project_detail', slug=project.slug) }}">
+              <img src="{{ project.thumbnail }}" alt="Preview of {{ project.title }}" loading="lazy">
+              <span>{{ project.category }}</span>
+              <strong>{{ project.title }}</strong>
+            </a>
+          {% endfor %}
+          {% for project in projects[:4] %}
+            <a class="hero-slide" href="{{ url_for('project_detail', slug=project.slug) }}" aria-hidden="true" tabindex="-1">
+              <img src="{{ project.thumbnail }}" alt="" loading="lazy">
+              <span>{{ project.category }}</span>
+              <strong>{{ project.title }}</strong>
+            </a>
+          {% endfor %}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="about-section" id="about" aria-labelledby="about-title">
+    <div class="about-section__intro">
+      <p class="eyebrow">About the work</p>
+      <h2 id="about-title">A focused portfolio system for digital products and visual design.</h2>
+    </div>
+
+    <div class="about-panel">
+      <p>This project was built to present selected work with clarity: fast project browsing, dedicated detail pages, editable JSON content, and a visual language that keeps the spotlight on the work itself.</p>
+      <div class="about-list" aria-label="Portfolio strengths">
+        <article>
+          <span>01</span>
+          <h3>Web Development</h3>
+          <p>Responsive interfaces, Flask routes, structured content, and clean front-end foundations for real project showcases.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Graphic Design</h3>
+          <p>Brand systems, posters, layouts, and visual assets organized through consistent thumbnails and concise project stories.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Easy Editing</h3>
+          <p>Projects are managed from a simple JSON file, making updates quick without touching the page templates.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects-section" id="projects" aria-labelledby="projects-title">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Gallery</p>
+        <h2 id="projects-title">Featured projects</h2>
+      </div>
+    </div>
+
+    <div class="project-tools" aria-label="Project filters">
+      <label class="search-field" for="project-search">
+        <span>Search projects</span>
+        <input id="project-search" type="search" placeholder="Search by title, tag, or category" autocomplete="off">
+      </label>
+
+      <div class="filter-list" aria-label="Filter projects by category">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
+        {% for category in categories %}
+          <button class="filter-button" type="button" data-filter="{{ category }}" aria-pressed="false">{{ category }}</button>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="project-grid" id="project-grid">
+      {% for project in projects %}
+        <article
+          class="project-card"
+          data-category="{{ project.category }}"
+          data-search="{{ project.title }} {{ project.category }} {{ project.summary }} {{ project.tags | join(' ') }}"
+        >
+          <a class="project-card__media" href="{{ url_for('project_detail', slug=project.slug) }}" aria-label="Open {{ project.title }}">
+            <img src="{{ project.thumbnail }}" alt="Thumbnail for {{ project.title }}" loading="lazy">
+            <span class="project-card__badge">{{ project.category }}</span>
+          </a>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span>{{ project.year }}</span>
+              {% if project.tags %}
+                <span>{{ project.tags[0] }}</span>
+              {% endif %}
+            </div>
+            <h3><a href="{{ url_for('project_detail', slug=project.slug) }}">{{ project.title }}</a></h3>
+            <p>{{ project.summary }}</p>
+            {% if project.tags %}
+              <ul class="tag-list" aria-label="Project tags">
+                {% for tag in project.tags %}
+                  <li>{{ tag }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            <a class="project-card__link" href="{{ url_for('project_detail', slug=project.slug) }}">View details</a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+
+    <p class="empty-state" id="empty-state" hidden>No projects match your search.</p>
+  </section>
+{% endblock %}

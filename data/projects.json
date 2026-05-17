@@ -1,0 +1,58 @@
+[
+  {
+    "order": 1,
+    "slug": "atelier-nova",
+    "title": "Atelier Nova",
+    "category": "Web Development",
+    "summary": "Editorial website for a creative studio, with a responsive showcase, service pages, and a contact form.",
+    "description": "Atelier Nova is a web project focused on presenting visual identity and art direction services through a fast, clear, and elegant experience. The interface prioritizes readability, visual portfolio browsing, and subtle calls to contact.",
+    "thumbnail": "/static/img/project-web-atelier.svg",
+    "tags": ["HTML5", "CSS Grid", "Flask", "UX"],
+    "year": "2026",
+    "role": "Front-end and Flask architecture",
+    "deliverables": ["Responsive layout", "Content routes", "Form prepared for integration"],
+    "highlight": "Simple architecture ready for publishing on a VPS or Render."
+  },
+  {
+    "order": 2,
+    "slug": "green-panel",
+    "title": "Green Panel",
+    "category": "Web Development",
+    "summary": "Lightweight dashboard for tracking environmental indicators with cards, filters, and clear metric views.",
+    "description": "Green Panel organizes consumption, savings, and impact indicators in a direct screen for recurring use. The goal was to reduce friction when reading data while keeping the interface flexible enough for new metrics.",
+    "thumbnail": "/static/img/project-web-dashboard.svg",
+    "tags": ["Python", "Flask", "CSS3", "Dashboard"],
+    "year": "2025",
+    "role": "Interface design and functional prototype",
+    "deliverables": ["Metric cards", "Editable data model", "Foundation for future authentication"],
+    "highlight": "Scan-friendly design without cluttering the screen."
+  },
+  {
+    "order": 3,
+    "slug": "lumina-brand",
+    "title": "Lumina Brand",
+    "category": "Graphic Design",
+    "summary": "Visual identity for a handcrafted lighting brand, including logo, palette, and digital assets.",
+    "description": "Lumina Brand explores contrast, typographic composition, and a visual system that is easy to apply across social media, packaging, and presentation materials.",
+    "thumbnail": "/static/img/project-design-lumina.svg",
+    "tags": ["Branding", "Logo", "Palette", "Social"],
+    "year": "2026",
+    "role": "Visual direction and brand system",
+    "deliverables": ["Logo", "Visual guide", "Social templates"],
+    "highlight": "Consistent graphic system built with a small set of elements."
+  },
+  {
+    "order": 4,
+    "slug": "ritmo-posters",
+    "title": "Ritmo Posters",
+    "category": "Graphic Design",
+    "summary": "Poster series for a cultural event with modular composition, strong colors, and digital adaptations.",
+    "description": "The Ritmo series was designed to work both in print and digital announcements. Its modular system makes variations easy without losing visual recognition.",
+    "thumbnail": "/static/img/project-design-poster.svg",
+    "tags": ["Poster", "Editorial", "Composition", "Event"],
+    "year": "2025",
+    "role": "Graphic design and adaptations",
+    "deliverables": ["Main poster", "Stories", "Digital banners"],
+    "highlight": "Flexible visual grid for multiple pieces."
+  }
+]

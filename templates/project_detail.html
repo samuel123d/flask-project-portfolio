@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Portfolio{% endblock %}
+{% block meta_description %}{{ project.summary }}{% endblock %}
+{% block og_title %}{{ project.title }} | Portfolio{% endblock %}
+{% block og_description %}{{ project.summary }}{% endblock %}
+
+{% block content %}
+  <article class="detail">
+    <a class="back-link" href="{{ url_for('index') }}#projects">Back to projects</a>
+
+    <header class="detail-hero">
+      <div class="detail-hero__copy">
+        <p class="eyebrow">{{ project.category }} / {{ project.year }}</p>
+        <h1>{{ project.title }}</h1>
+        <p>{{ project.description }}</p>
+        <div class="detail-hero__meta" aria-label="Project summary">
+          <span>{{ project.role }}</span>
+          <span>{{ project.highlight }}</span>
+        </div>
+      </div>
+      <div class="detail-hero__media">
+        <img src="{{ project.thumbnail }}" alt="Large thumbnail for {{ project.title }}">
+      </div>
+    </header>
+
+    <section class="detail-grid" aria-label="Project information">
+      <div>
+        <h2>Highlight</h2>
+        <p>{{ project.highlight }}</p>
+      </div>
+      <div>
+        <h2>Role</h2>
+        <p>{{ project.role }}</p>
+      </div>
+      <div>
+        <h2>Deliverables</h2>
+        <ul class="check-list">
+          {% for item in project.deliverables %}
+            <li>{{ item }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div>
+        <h2>Tools</h2>
+        <ul class="tag-list tag-list--large">
+          {% for tag in project.tags %}
+            <li>{{ tag }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </section>
+  </article>
+
+  <section class="related" aria-labelledby="related-title">
+    <h2 id="related-title">Other projects</h2>
+    <div class="related-list">
+      {% for item in related %}
+        <a href="{{ url_for('project_detail', slug=item.slug) }}">
+          <img src="{{ item.thumbnail }}" alt="" loading="lazy">
+          <span>
+            <small>{{ item.category }}</small>
+            <strong>{{ item.title }}</strong>
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
