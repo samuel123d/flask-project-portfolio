@@ -1,3 +1,4 @@
+/* Design tokens used across the whole portfolio. */
 :root {
   --bg: #f7f4ef;
   --surface: #ffffff;
@@ -10,6 +11,7 @@
   --shadow: 0 18px 45px rgba(31, 37, 40, 0.09);
 }
 
+/* Global reset and base typography. */
 * {
   box-sizing: border-box;
 }
@@ -46,6 +48,7 @@ button:focus-visible {
   outline-offset: 4px;
 }
 
+/* Shared page width for the main layout sections. */
 .site-header,
 .site-footer,
 .intro,
@@ -58,6 +61,7 @@ button:focus-visible {
   margin-inline: auto;
 }
 
+/* Sticky navigation. */
 .site-header {
   position: sticky;
   top: 0;
@@ -72,6 +76,7 @@ button:focus-visible {
   backdrop-filter: blur(14px);
 }
 
+/* Brand mark used in the header and footer. */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -92,6 +97,7 @@ button:focus-visible {
   line-height: 1;
 }
 
+/* Primary navigation links. */
 .site-nav {
   display: flex;
   align-items: center;
@@ -119,6 +125,7 @@ button:focus-visible {
   background: rgba(23, 124, 114, 0.08);
 }
 
+/* Hero introduction and project carousel. */
 .intro {
   padding: 58px 0 42px;
 }
@@ -173,6 +180,7 @@ h3 {
   font-size: 1.08rem;
 }
 
+/* Carousel shell. The visual frame is intentionally invisible. */
 .hero-carousel {
   position: relative;
   overflow: clip;
@@ -194,6 +202,7 @@ h3 {
   animation-play-state: paused;
 }
 
+/* When a carousel slide is focused, hide the surrounding slides temporarily. */
 .hero-carousel:has(.hero-slide.is-focused) .hero-slide:not(.is-focused) {
   opacity: 0;
   pointer-events: none;
@@ -218,6 +227,7 @@ h3 {
   will-change: transform;
 }
 
+/* JavaScript adds .is-focused and --focus-x to center the hovered slide. */
 .hero-slide.is-focused {
   z-index: 5;
   background: var(--ink);
@@ -273,6 +283,7 @@ h3 {
   line-height: 1.05;
 }
 
+/* Infinite carousel animation. Duplicated slides in index.html make this seamless. */
 @keyframes carousel-scroll {
   from {
     transform: translateX(0);
@@ -283,10 +294,12 @@ h3 {
   }
 }
 
+/* Project gallery. */
 .projects-section {
   padding: 18px 0 88px;
 }
 
+/* Minimal section explaining the purpose and type of work. */
 .about-section {
   padding: 18px 0 72px;
 }
@@ -372,12 +385,14 @@ h3 {
   padding: 8px 10px;
 }
 
+/* Search and filter controls for the project gallery. */
 .project-tools {
   display: grid;
   gap: 14px;
   margin-bottom: 24px;
 }
 
+/* Search input for filtering projects on the client side. */
 .search-field {
   display: grid;
   gap: 8px;
@@ -409,6 +424,7 @@ h3 {
   outline: 0;
 }
 
+/* Category filter buttons. */
 .filter-list {
   display: flex;
   flex-wrap: wrap;
@@ -452,6 +468,7 @@ h3 {
   text-align: center;
 }
 
+/* Project cards rendered from data/projects.json. */
 .project-card {
   position: relative;
   display: flex;
@@ -567,6 +584,7 @@ h3 {
   list-style: none;
 }
 
+/* Project detail page. */
 .detail {
   padding: 30px 0 56px;
 }
@@ -665,6 +683,7 @@ h3 {
   font-size: 0.85rem;
 }
 
+/* Related projects at the bottom of detail pages. */
 .related {
   padding-bottom: 84px;
 }
@@ -716,6 +735,7 @@ h3 {
   transform: translateY(-2px);
 }
 
+/* Shared footer. */
 .site-footer {
   border-top: 1px solid var(--line);
   padding: 34px 0 42px;
@@ -760,6 +780,7 @@ h3 {
   color: var(--accent-strong);
 }
 
+/* Custom 404 page. */
 .error-page {
   min-height: 58vh;
   display: grid;
@@ -789,6 +810,7 @@ h3 {
   transform: translateY(-2px);
 }
 
+/* Tablet and desktop layout refinements. */
 @media (min-width: 720px) {
   .site-header,
   .site-footer,
@@ -879,6 +901,7 @@ h3 {
   }
 }
 
+/* Wider desktop card layout. */
 @media (min-width: 1040px) {
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -899,6 +922,7 @@ h3 {
   }
 }
 
+/* Respect users who prefer reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

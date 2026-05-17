@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Shared metadata. Child templates override the SEO blocks when needed. -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{% block meta_description %}Project portfolio for Web Development and Graphic Design work.{% endblock %}">
@@ -12,6 +13,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
   </head>
   <body>
+    <!-- Sticky header used across every page. -->
     <header class="site-header">
       <a class="brand" href="{{ url_for('index') }}" aria-label="Back to the gallery">
         <span class="brand__mark">P</span>
@@ -25,9 +27,11 @@
     </header>
     
     <main>
+      <!-- Page-specific content is injected here by child templates. -->
       {% block content %}{% endblock %}
     </main>
 
+    <!-- Shared footer with quick navigation back to the main sections. -->
     <footer class="site-footer">
       <div class="site-footer__content">
         <div>
@@ -44,6 +48,7 @@
         </nav>
       </div>
     </footer>
+    <!-- Small progressive enhancement script for search, filters, and carousel focus. -->
     <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
   </body>
 </html>

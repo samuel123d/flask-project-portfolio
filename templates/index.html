@@ -6,6 +6,7 @@
 {% block og_description %}Browse selected Web Development and Graphic Design projects in a responsive Flask portfolio.{% endblock %}
 
 {% block content %}
+  <!-- Hero section: introduction plus a lightweight project carousel. -->
   <section class="intro" aria-labelledby="page-title">
     <div class="intro__layout">
       <div class="intro__content">
@@ -16,6 +17,7 @@
 
       <aside class="hero-carousel" aria-label="Featured project carousel">
         <div class="hero-carousel__track">
+          {# First carousel set: real links visible to users and assistive tech. #}
           {% for project in projects[:4] %}
             <a class="hero-slide" href="{{ url_for('project_detail', slug=project.slug) }}">
               <img src="{{ project.thumbnail }}" alt="Preview of {{ project.title }}" loading="lazy">
@@ -23,6 +25,7 @@
               <strong>{{ project.title }}</strong>
             </a>
           {% endfor %}
+          {# Second carousel set: duplicated only to create a seamless CSS loop. #}
           {% for project in projects[:4] %}
             <a class="hero-slide" href="{{ url_for('project_detail', slug=project.slug) }}" aria-hidden="true" tabindex="-1">
               <img src="{{ project.thumbnail }}" alt="" loading="lazy">
@@ -35,6 +38,7 @@
     </div>
   </section>
 
+  <!-- Minimal about section explaining the purpose and type of work. -->
   <section class="about-section" id="about" aria-labelledby="about-title">
     <div class="about-section__intro">
       <p class="eyebrow">About the work</p>
@@ -63,6 +67,7 @@
     </div>
   </section>
 
+  <!-- Project gallery with client-side search and category filters. -->
   <section class="projects-section" id="projects" aria-labelledby="projects-title">
     <div class="section-heading">
       <div>
@@ -72,12 +77,14 @@
     </div>
 
     <div class="project-tools" aria-label="Project filters">
+      <!-- Search is handled in static/js/main.js using each card's data-search text. -->
       <label class="search-field" for="project-search">
         <span>Search projects</span>
         <input id="project-search" type="search" placeholder="Search by title, tag, or category" autocomplete="off">
       </label>
 
       <div class="filter-list" aria-label="Filter projects by category">
+        <!-- Categories come from the JSON data through Flask. -->
         <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All</button>
         {% for category in categories %}
           <button class="filter-button" type="button" data-filter="{{ category }}" aria-pressed="false">{{ category }}</button>
@@ -87,6 +94,7 @@
 
     <div class="project-grid" id="project-grid">
       {% for project in projects %}
+        <!-- Data attributes make filtering work without another backend request. -->
         <article
           class="project-card"
           data-category="{{ project.category }}"
@@ -118,6 +126,7 @@
       {% endfor %}
     </div>
 
+    <!-- Hidden by default; JavaScript shows it when no cards match the filters. -->
     <p class="empty-state" id="empty-state" hidden>No projects match your search.</p>
   </section>
 {% endblock %}

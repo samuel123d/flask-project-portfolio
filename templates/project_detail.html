@@ -6,10 +6,12 @@
 {% block og_description %}{{ project.summary }}{% endblock %}
 
 {% block content %}
+  <!-- Detail page for one project selected by its slug. -->
   <article class="detail">
     <a class="back-link" href="{{ url_for('index') }}#projects">Back to projects</a>
 
     <header class="detail-hero">
+      <!-- Main project narrative pulled from data/projects.json. -->
       <div class="detail-hero__copy">
         <p class="eyebrow">{{ project.category }} / {{ project.year }}</p>
         <h1>{{ project.title }}</h1>
@@ -19,11 +21,13 @@
           <span>{{ project.highlight }}</span>
         </div>
       </div>
+      <!-- Large project visual. The same thumbnail can be replaced by a real mockup. -->
       <div class="detail-hero__media">
         <img src="{{ project.thumbnail }}" alt="Large thumbnail for {{ project.title }}">
       </div>
     </header>
 
+    <!-- Structured project facts for quick scanning. -->
     <section class="detail-grid" aria-label="Project information">
       <div>
         <h2>Highlight</h2>
@@ -52,6 +56,7 @@
     </section>
   </article>
 
+  <!-- Small navigation list to keep users exploring other portfolio entries. -->
   <section class="related" aria-labelledby="related-title">
     <h2 id="related-title">Other projects</h2>
     <div class="related-list">
